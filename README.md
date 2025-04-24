@@ -45,3 +45,5 @@ pip install -r requirements.txt
 ```
 
 Create superuser with `manage.py createsuperuser`
+
+data.json contains fixture of first user jordan:jordan
