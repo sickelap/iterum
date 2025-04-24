@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load app_template_tags tabler_icons %}
+
+{% block content %}
+  <div class="flex h-screen overflow-y-hidden">
+    <aside class="bg-white shadow-sm flex flex-col justify-between">
+      <div class="flex m-2 justify-center pt-2">
+        <a href="/">
+          <img src="https://placehold.co/30x30" alt="logo">
+        </a>
+      </div>
+      <div class="flex flex-col m-2">
+        <div class="m-2 hover:bg-gray-100 rounded-md">
+          {% tabler_icon_outline 'home' 'stroke-teal-900 m-1' %}
+        </div>
+        <div class="m-2 hover:bg-gray-100 rounded-md">
+          {% tabler_icon_outline 'compass' 'stroke-teal-900 m-1' %}
+        </div>
+        <div class="m-2 hover:bg-gray-100 rounded-md">
+          {% tabler_icon_outline 'user' 'stroke-teal-900 m-1' %}
+        </div>
+      </div>
+      <div class="flex flex-col border-t-1 p-2">
+        <div class="m-2 hover:bg-gray-100 rounded-md">
+          {% tabler_icon_outline 'logout' 'stroke-teal-900 m-1' %}
+        </div>
+      </div>
+    </aside>
+
+    <main class="flex-1 p-4 gap-3 overflow-y-auto">
+      {% header_card title="Profile" user=user %}
+      {% block page_content %}{% endblock %}
+    </main>
+  </div>
+
+{% endblock %}

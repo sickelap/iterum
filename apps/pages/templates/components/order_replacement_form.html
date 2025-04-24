@@ -1,0 +1,80 @@
+{% load app_template_tags %}
+
+<div class="fixed inset-0 z-40 bg-black/70 flex items-center justify-center">
+  <div class="bg-white w-full max-w-xl rounded-2xl shadow-xl p-6 relative z-50">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">Schedule Replacement</h2>
+    <p class="text-sm text-gray-600 mb-2">{{ location.address1 }}</p>
+    <div class="grid grid-cols-2 md:grid-cols-6 gap-3 text-sm mb-4">
+      <div>
+        <p class="text-gray-400">Appliance</p>
+        <p class="font-medium">{{ replacement.category }}</p>
+      </div>
+      <div>
+        <p class="text-gray-400">Brand</p>
+        <p class="font-medium">{{ replacement.brand }}</p>
+      </div>
+      <div>
+        <p class="text-gray-400">Model No.</p>
+        <p class="font-medium">{{ replacement.model }}</p>
+      </div>
+      <div>
+        <p class="text-gray-400">Cost</p>
+        <p class="font-medium">{{ replacement.cost }}</p>
+      </div>
+      <div>
+        <p class="text-gray-400">Efficiency</p>
+        <p class="font-medium">{{ replacement.efficiency }}</p>
+      </div>
+      <div>
+        <p class="text-gray-400">Matching Score</p>
+        <p class="font-medium">{{ replacement.matching_score }}</p>
+      </div>
+    </div>
+
+    <p class="text-gray-600 mb-2">Please select data and time</p>
+    <div class="flex flex-wrap gap-2 mb-3">
+      <button class="flex-1 px-4 py-2 border rounded-lg text-sm hover:bg-gray-100">15<sup>th</sup> Sept</button>
+      <button class="flex-1 px-4 py-2 border rounded-lg text-sm hover:bg-gray-100">16<sup>th</sup> Sept</button>
+      <button class="flex-1 px-4 py-2 border rounded-lg text-sm bg-black text-white">17<sup>th</sup> Sept</button>
+    </div>
+    <div class="flex flex-wrap gap-2 mb-3">
+      <button class="flex-1 px-4 py-2 border rounded-lg text-sm hover:bg-gray-100">Select Other Date</button>
+    </div>
+
+    <div class="flex gap-3 mb-4">
+      <div class="flex-1">
+        <label class="block text-sm text-gray-500 mb-1" for="hour">Select time (hour)</label>
+        <select id="hour" name="hour" class="w-full border rounded-md px-3 py-2 text-sm">
+          {% for h in hour_options %}
+          <option value="{{ h }}">{{ h|stringformat:"02d" }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="flex-1">
+        <label class="block text-sm text-gray-500 mb-1" for="minutes">Select time (minutes)</label>
+        <select id="minutes" name="minutes" class="w-full border rounded-md px-3 py-2 text-sm">
+          {% for m in minute_options %}
+          <option value="{{ m }}" {% if m == selected_minutes %}selected{% endif %}>{{ m }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label class="flex items-center text-sm text-gray-500 space-x-2">
+        <input type="checkbox" class="form-checkbox">
+        <span>Want to enter tenant email and send notification of delivery and reminders? (Optional)</span>
+      </label>
+    </div>
+
+    <div class="flex gap-3 mt-4">
+      <button class=" flex-1 block bg-teal-900 text-white px-4 py-2 rounded-md text-sm">Confirm</button>
+      <button
+        onClick="document.getElementById('order-replacement-form-container').innerHTML = ''"
+        class="flex-1 block text-teal-900 font-bold text-sm hover:underline">Cancel</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- TODO: define form to create replacement order -->

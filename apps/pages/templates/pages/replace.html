@@ -1,0 +1,21 @@
+{% extends "layouts/main.html" %}
+{% load app_template_tags tabler_icons %}
+
+{% block page_content %}
+
+  <div class="flex items-center pt-3 text-sm">
+    {% tabler_icon_outline 'chevron-left' 'w-4 h-4 text-teal-900' %}
+    <a href="#" class="text-teal-900">Appliances</a>
+    {% tabler_icon_filled 'point' 'w-3 h-3 text-teal-900 mx-1' %}
+    <span>Replace</span>
+  </div>
+
+  {% location_details item=location %}
+
+  {% appliance_details item=appliance %}
+
+  {% inventory_list appliance=appliance inventory_items=inventory_items %}
+
+  {#% order_replacement_popup appliance.id inventory_items.first.id %#}
+
+{% endblock page_content %}
